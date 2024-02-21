@@ -44,7 +44,7 @@ void print_cal(TDate* current_date) {
         printf(" ");
     }
 
-    printf("%s %d\n", months[current_date->month], current_date->year);
+    printf("\n%s %d\n\n", months[current_date->month], current_date->year);
 
     for (unsigned short week_day = 0; week_day < 7; week_day++) {
         printf("%s ", week_days[week_day]); 
@@ -75,6 +75,7 @@ void print_cal(TDate* current_date) {
             printf("\n");
         }
     } 
+    printf("\n");
 }
 
 void dump_to_console(int day, bool is_current_day) {
@@ -82,14 +83,15 @@ void dump_to_console(int day, bool is_current_day) {
         printf("\033[3;42;30m");
    }
     if (day < 10) {
-        printf(" %d ", (day));
+        printf(" %d", (day));
     }else {
-        printf("%d ", (day));
+        printf("%d", (day));
     }
 
    if (is_current_day) {
         printf("\033[0m"); // Reset color to default
    }
+    printf(" ");
 }
 
 TDate create_context() {
