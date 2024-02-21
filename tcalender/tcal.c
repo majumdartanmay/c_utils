@@ -7,17 +7,6 @@
 
 const unsigned short TITLE_MARGIN = 4;
 
-/*
- *  
-     February 2024
-Su Mo Tu We Th Fr Sa
-             1  2  3
- 4  5  6  7  8  9 10
-11 12 13 14 15 16 17
-18 19 20 21 22 23 24
-25 26 27 28 29
- * */
-
 const char *months[] = {
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -30,12 +19,18 @@ const char *week_days[] = {
 int total_days(struct tm *local_time) 
 { 
   
-    int days_in_month[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    DWORD days_in_month[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
     const int current_month = local_time-> tm_mon;
+
     // Check for leap year (if February has 29 days)
-    if (current_month == 1 && ((local_time->tm_year % 4 == 0 && local_time->tm_year % 100 != 0) || local_time->tm_year % 400 == 0)) {
+    if (current_month == 1 &&
+        ((local_time->tm_year % 4 == 0 
+        && local_time->tm_year % 100 != 0) || local_time->tm_year % 400 == 0)) {
+
         days_in_month[1] = 29;
     }
+
     return days_in_month[current_month];
 } 
 void print_cal(TDate* current_date) {
@@ -96,19 +91,28 @@ TDate create_context() {
 
     time_t current_time;
     struct tm *local_time;
+
     // Get the current time
     time(&current_time);
     // Convert to local time structure
     local_time = localtime(&current_time);
 
     const TDate temp_tdate = 
-        { .total_days = total_days(local_time), .month = local_time->tm_mon , .year = local_time->tm_year + 1900, .week_day = local_time->tm_wday, .day = local_time->tm_mday };
+        {   
+            .total_days = total_days(local_time),
+            .month = local_time->tm_mon ,
+            .year = local_time->tm_year + 1900,
+            .week_day = local_time->tm_wday,
+            .day = local_time->tm_mday 
+        };
     
     return temp_tdate;
 }
 
 int main( void ) {
+
     TDate t_date = create_context();
     print_cal(&t_date);
+
     return 0;
 }
