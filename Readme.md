@@ -4,7 +4,7 @@ Bunch of utilities that I will create to revise C.
 
 ## tcal
 
-This prints the current month like a calender layout
+This prints the current month like a calender layout. The current date will get highlighted in green.
 
 ```bash
 Su Mo Tu We Th Fr Sa
@@ -40,3 +40,5 @@ This should create a tcal executable.
 ## Building ttime
 
 Process is same as tcal. Just use the ttime folder rather than tcal.
+
+**Note**: I am currently trying to integrate github actions as well.
