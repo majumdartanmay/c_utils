@@ -41,4 +41,14 @@ This should create a tcal executable.
 
 Process is same as tcal. Just use the ttime folder rather than tcal.
 
+## Building tdel
+
+```bash
+cd tdel
+mkdir build && cd build
+cmake .. -G"Unix Makefiles"
+make
+```
+Process is same as tcal. Just use the ttime folder rather than tcal.
+
 **Note**: I am currently trying to integrate github actions as well.
