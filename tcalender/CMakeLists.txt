@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(tcalender)
+project(tcal)
 
 # Add your source files
 add_executable(tcal tcal.c)
