@@ -19,7 +19,7 @@ const char *week_days[] = {
 int total_days(struct tm *local_time) 
 { 
   
-    DWORD days_in_month[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int days_in_month[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     const int current_month = local_time-> tm_mon;
 
@@ -91,14 +91,13 @@ void dump_to_console(int day, bool is_current_day) {
 
 TDate create_context() {
 
-    time_t current_time;
-    struct tm *local_time;
+    struct tm local_time_whole;
+    time_t now = time(0);
 
-    // Get the current time
-    time(&current_time);
     // Convert to local time structure
-    local_time = localtime(&current_time);
+    localtime_s(&local_time_whole, &now);
 
+    struct tm* local_time = &local_time_whole;
     const TDate temp_tdate = 
         {   
             .total_days = total_days(local_time),
