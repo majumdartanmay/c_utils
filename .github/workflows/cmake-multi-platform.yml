@@ -34,14 +34,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: print directory structure
-      # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
-      id: directory_structure
-      shell: bash
-      run: |
-        ls
-        pwd
-
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
       id: strings
@@ -62,3 +54,18 @@ jobs:
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+
+    - name: Print directory structure
+      # Print directory structure
+      id: directory_structure
+      shell: bash
+      run: |
+        ls
+        pwd
+
+    - name: Run make
+      # Print directory structure
+      id: Run_make
+      shell: bash
+      run: |
+        cd build && make
